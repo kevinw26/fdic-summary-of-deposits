@@ -23,7 +23,7 @@ URL = 'https://www7.fdic.gov/sod/download/ALL_{}.zip'
 os.makedirs('sod', exist_ok=True)
 
 
-def download_sod(y: int):
+def download_sod(y: int, output_path: str):
     # stream the zip archive to memory
     r = requests.get(URL.format(y))
     if r.status_code != 200:
@@ -56,8 +56,7 @@ def download_sod(y: int):
     #     sod = sod.with_columns(pl.col('ZIPBR').cast(pl.Int64))
 
     # save
-    sod.to_csv(lzma.open(
-        path.join('sod', f'sod_{y}.csv.xz'), 'wb', preset=9))
+    sod.to_csv(lzma.open(output_path, 'wb', preset=9))
     print(f'wrote sod {y}', flush=True)
 
 
@@ -70,7 +69,13 @@ if __name__ == '__main__':
         # due to FSLIC (Federal Savings and Loan Insurance Corporation) and RTC
         # (Resolution Trust Corporation) merger into the FDIC circa 1993
         for year in range(1994, datetime.now().year):
+            output_path = path.join('sod', f'sod_{year}.csv.xz')
+            if path.exists(output_path) and \
+                    path.getsize(output_path) != 0:
+                # skip files that already exist
+                continue
+
             # download_sod(year)
-            futures.append(e.submit(download_sod, year))
+            futures.append(e.submit(download_sod, year, output_path))
 
         wait(futures)
