@@ -69,14 +69,16 @@ print('calc mo share')
 # -----------------------------------------------------------------------------
 # plot main office share
 lims = (hhi['YEAR'].min() - 0.75, hhi['YEAR'].max() + 0.75)
-hhi_f, (hhi_l, hhi_r) = plt.subplots(1, 2, figsize=(8, 4))
+hhi_f, (hhi_l, hhi_r) = plt.subplots(1, 2, figsize=(12, 6))
 sns.boxplot(x='YEAR', y='BRS_hhi', ax=hhi_l, data=hhi, native_scale=True)
 sns.boxplot(x='YEAR', y='DEP_hhi', ax=hhi_r, data=hhi, native_scale=True,
             color='tab:orange')
-hhi_l.set(xlabel='', ylabel='Branch HHI', xlim=lims, ylim=(0, 10_000))
-hhi_r.set(xlabel='', ylabel='Deposit HHI', xlim=lims, ylim=(0, 10_000))
+hhi_l.set(xlabel='', ylabel='Branch HHI', xlim=lims, ylim=(0, 10_000 + 250))
+hhi_r.set(xlabel='', ylabel='Deposit HHI', xlim=lims, ylim=(0, 10_000 + 250))
 hhi_r.yaxis.tick_right()
 hhi_r.yaxis.set_label_position('right')
+hhi_l.spines[['right', 'top']].set_visible(False)
+hhi_r.spines[['left', 'top']].set_visible(False)
 for ax in [hhi_l, hhi_r]:
     ax.yaxis.set_major_locator(ticker.MultipleLocator(2_000))
     ax.yaxis.set_minor_locator(ticker.MultipleLocator(1_000))
@@ -94,9 +96,10 @@ sns.boxplot(
     x='YEAR', y='mo_share', data=mo_dep, ax=mos_a, native_scale=True,
     color='tab:green',  # inner='quart'
 )
+mos_a.spines[['right', 'top']].set_visible(False)
 mos_a.set(
-    xlabel='', ylabel='% of deposits at main office', xlim=lims, ylim=(0, 100),
-    title='% of "branch deposits" at main office over time')
+    xlabel='', ylabel='% of deposits at main office', xlim=lims,
+    ylim=(-2, 102), title='% of "branch deposits" at main office over time')
 mos_a.yaxis.set_major_locator(ticker.MultipleLocator(10))
 mos_a.yaxis.set_minor_locator(ticker.MultipleLocator(5))
 mos_a.xaxis.set_major_locator(ticker.MultipleLocator(5))
