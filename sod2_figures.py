@@ -67,7 +67,7 @@ mo_dep['mo_share'] = 100 * (mo_dep['1'] / mo_dep['total'])
 print('calc mo share')
 
 # -----------------------------------------------------------------------------
-# plot main office share
+# plot hhi and main office share
 lims = (hhi['YEAR'].min() - 0.75, hhi['YEAR'].max() + 0.75)
 hhi_f, (hhi_l, hhi_r) = plt.subplots(1, 2, figsize=(12, 6))
 sns.boxplot(x='YEAR', y='BRS_hhi', ax=hhi_l, data=hhi, native_scale=True)
@@ -86,8 +86,8 @@ for ax in [hhi_l, hhi_r]:
     ax.xaxis.set_minor_locator(ticker.MultipleLocator(1))
     ax.grid(ls='dotted', axis='y')
 hhi_f.tight_layout()
-hhi_f.suptitle('Branch and deposit HHI distribution over time')
-hhi_f.subplots_adjust(top=0.92)
+hhi_f.suptitle('Branch and deposit county HHI distribution over time')
+hhi_f.subplots_adjust(top=0.94)
 hhi_f.savefig(path.join('figs', 'sod branch and deposit hhis.png'))
 print('saved hhi figure')
 
