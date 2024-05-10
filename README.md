@@ -5,6 +5,12 @@ branch for FDIC insured institutions. See [12 CFR 304.3(c)](
 https://www.ecfr.gov/current/title-12/part-304/section-304.3#p-304.3(c)). Each
 institution reports on 30 June of each year.
 
+SOD is widely used in economic research. Eg Bouwman and Malmendier _Am Econ Rev_
+105 (2015) pp 321–25. It is also used in the preliminary screens for bank merger
+competitive reviews. Department of Justice
+_[Bank merger competitive review](https://www.justice.gov/sites/default/files/atr/legacy/2007/08/14/6472.pdf)_
+(2005).
+
 ## Variables
 
 The FDIC merges SOD with RIS (Research Information System), which contains
@@ -80,7 +86,7 @@ to separate those corporate or brokered deposits from the main deposit
 franchise. In 1995, for example, around 75 per cent of banks booked a majority
 of deposits at their main office (`BKMO`).
 
-Along with the expansion of online banking – noted at 
+Along with the expansion of online banking – noted at
 [89 FR 6607](https://www.federalregister.gov/d/2023-25797/p-499) – which
 removes the need for branches in deposit collection entirely, `DEPSUMBR`
 accuracy may be in further decline.
@@ -90,5 +96,6 @@ accuracy may be in further decline.
 Kevin Wong
 
 The views expressed (if there is any such expression at all) herein do not
-necessarily represent the views of the Office of the Comptroller of the
-Currency, the Department of the Treasury, or the United States.
+necessarily represent the views of the Federal Deposit Insurance Corporation,
+Office of the Comptroller of the Currency, the Department of the Treasury, or
+the United States.
